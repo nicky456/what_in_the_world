@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/what_in_the_world/static/css/main.83580feb.css",
-    "main.js": "/what_in_the_world/static/js/main.b3e62b81.js",
+    "main.js": "/what_in_the_world/static/js/main.3f612ea1.js",
     "static/js/787.a07eafea.chunk.js": "/what_in_the_world/static/js/787.a07eafea.chunk.js",
     "index.html": "/what_in_the_world/index.html",
     "main.83580feb.css.map": "/what_in_the_world/static/css/main.83580feb.css.map",
-    "main.b3e62b81.js.map": "/what_in_the_world/static/js/main.b3e62b81.js.map",
+    "main.3f612ea1.js.map": "/what_in_the_world/static/js/main.3f612ea1.js.map",
     "787.a07eafea.chunk.js.map": "/what_in_the_world/static/js/787.a07eafea.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.83580feb.css",
-    "static/js/main.b3e62b81.js"
+    "static/js/main.3f612ea1.js"
   ]
 }
