@@ -13,7 +13,7 @@ export default function useFetch(url) {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log("ERROR" + error);
+        console.log("ERROR: " + error);
         setError(error);
       });
   }, [url]);
