@@ -1,7 +1,7 @@
 import "./World.css";
 import { useState } from "react";
 import Home from "./Components/Home";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import CountryDetails from "./Components/CountryDetails";
 import { HashRouter } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -23,7 +23,7 @@ function App() {
     <HashRouter>
       <div className="App">
         <nav className={isDarkMode ? "nav" : "light nav"}>
-          <Link to="/">
+          <Link to="/" onClick={() => window.location.reload(false)}>
             <h1>What in the World!?</h1>
           </Link>
           <label className="switch">
