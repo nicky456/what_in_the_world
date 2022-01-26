@@ -10,7 +10,7 @@ export default function CountryDetails({ isDarkMode }) {
   const {
     data: country,
     error,
-    isLoading,
+    loading,
   } = useFetch("https://restcountries.com/v2/alpha/" + cca3);
 
   console.log(country);
@@ -18,7 +18,7 @@ export default function CountryDetails({ isDarkMode }) {
   return (
     <div className={isDarkMode ? "country-details" : "light country-details"}>
       {error && <div>{error}</div>}
-      {isLoading && <Loading />}
+      {loading && <Loading />}
       {country && (
         <div className="country-page">
           <img
@@ -58,28 +58,28 @@ export default function CountryDetails({ isDarkMode }) {
                 </p>
                 <p>
                   <b> Currencies: </b>
+                  {country.currencies.map((currency) => (
+                    <span key={currency.name}>{currency.name}</span>
+                  ))}
                 </p>
-                {country.currencies.map((currency) => (
-                  <p key={currency.name}>{currency.name}</p>
-                ))}
                 <p>
                   <b> Languages: </b>
+                  {country.languages.map((language) => (
+                    <span key={language.name}>{language.name}, </span>
+                  ))}
                 </p>
-                {country.languages.map((language) => (
-                  <p key={language.name}>{language.name}</p>
-                ))}
               </div>
             </div>
             {country.borders ? (
               <div>
                 <p>
                   <b>Borders: </b>
+                  {country.borders.map((border) => (
+                    <Link to={`/${border}`} key={country.border}>
+                      <button className="border-button">{border}</button>
+                    </Link>
+                  ))}
                 </p>
-                {country.borders.map((border) => (
-                  <Link to={`/${border}`} key={country.border}>
-                    <button>{border}</button>
-                  </Link>
-                ))}
               </div>
             ) : (
               <b>Borders: N/A</b>

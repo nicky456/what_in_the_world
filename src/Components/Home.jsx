@@ -54,30 +54,51 @@ export default function Home({ isDarkMode }) {
 
   return (
     <>
-      <div className="filter-search">
-        <input
-          type={"text"}
-          placeholder="Search for countries..."
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
-
-        <select onChange={selectContinent}>
-          <option value={"all"}>Show all countries</option>
-          <option value={"africa"}>Africa</option>
-          <option value={"americas"}>America</option>
-          <option value={"asia"}>Asia</option>
-          <option value={"europe"}>Europe</option>
-          <option value={"oceania"}>Oceania</option>
-        </select>
-      </div>
+      {!loading && (
+        <div className={isDarkMode ? "intro" : "light intro"}>
+          <h1>Search Countries All Around The World</h1>
+          <p>
+            The project is based on the{" "}
+            <a
+              href="https://restcountries.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              REST Countries API
+            </a>
+          </p>
+          <p>Click on the selected country for more details</p>
+        </div>
+      )}
+      {!loading && (
+        <div className={isDarkMode ? "filter-search" : "light filter-search"}>
+          <input
+            type={"text"}
+            placeholder="Search for countries..."
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <select onChange={selectContinent}>
+            <option>Filter by continent</option>
+            <option value={"all"}>Show all countries</option>
+            <option value={"africa"}>Africa</option>
+            <option value={"americas"}>America</option>
+            <option value={"asia"}>Asia</option>
+            <option value={"europe"}>Europe</option>
+            <option value={"oceania"}>Oceania</option>
+          </select>
+        </div>
+      )}
       <div className="country-list">
         {loading ? (
           <Loading />
         ) : (
           filteredResults.map((country) => (
-            <div className="country" key={country.cca3}>
+            <div
+              className={isDarkMode ? "country" : "light country"}
+              key={country.cca3}
+            >
               <Countries country={country} isDarkMode={isDarkMode} />
             </div>
           ))

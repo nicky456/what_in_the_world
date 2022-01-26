@@ -27,7 +27,7 @@ body {
   width: 85%;
   max-width: 1250px;
   margin: auto;
-  background-color: #282828;
+  background-color: #1d1d1d;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -67,28 +67,77 @@ body.light {
 }
 
 .content {
-  margin-top: 100px;
-  margin-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro {
+  color: #ffffff;
+  text-align: center;
+}
+
+.intro h1 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.intro a {
+  color: hsl(146, 65%, 55%);
+}
+
+.intro a:hover {
+  color: hsl(210, 78%, 56%);
+}
+
+.light.intro {
+  color: #000000;
 }
 
 .filter-search {
+  margin-top: 30px;
   margin-bottom: 50px;
   display: flex;
   justify-content: space-between;
 }
 
 .filter-search input {
-  border: 1px solid #bbbbbb;
+  border: 1px solid #ffffff;
   padding: 5px 10px;
   width: 30%;
-  color: #bbbbbb;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.light.filter-search input {
+  border-color: #000000;
+  color: #000000;
 }
 
 select {
-  border: 1px solid #bbbbbb;
+  border: 1px solid #ffffff;
   padding: 4px 10px;
   width: 30%;
-  color: #bbbbbb;
+  border-radius: 5px;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.light.filter-search select {
+  border-color: #000000;
+  color: #000000;
 }
 
 .country-list {
@@ -98,13 +147,28 @@ select {
 }
 
 .country {
+  position: relative;
   display: grid;
-  grid-template-rows: [row1-start] 50% [row1-end] auto [third-line];
+  height: 45vh;
+  grid-template-rows: [row1-start] 50% [row1-end] 50% [third-line];
+  background: linear-gradient(
+    180deg,
+    rgba(40, 39, 39, 0.95) 0%,
+    rgb(29, 29, 29) 100%
+  );
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
+  border-radius: 10px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.light.country {
+  background: linear-gradient(
+    180deg,
+    rgba(252, 252, 252) 0%,
+    rgb(240, 240, 240) 100%
+  );
 }
 
 .country:hover {
@@ -117,8 +181,7 @@ select {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 10px;
   filter: brightness(80%);
 }
 
@@ -126,26 +189,68 @@ select {
   filter: brightness(100%);
 }
 
+.flag-ribbon {
+  padding: 20vh 100% 0px 0px;
+  border-radius: 10px 10px 10px 0px;
+  padding-left: 16px + 16px;
+  position: absolute;
+  left: -15px;
+  top: 10px;
+  box-shadow: 0.7px 1.1px 6.6px -2px rgba(0, 0, 0, 0.024),
+    1.3px 2px 11px -2px rgba(0, 0, 0, 0.037),
+    1.9px 2.8px 13.3px -2px rgba(0, 0, 0, 0.048),
+    2.6px 3.9px 13.7px -2px rgba(0, 0, 0, 0.057),
+    3.9px 5.8px 13.4px -2px rgba(0, 0, 0, 0.064),
+    8px 12px 26px -2px rgba(0, 0, 0, 0.07);
+  object-fit: cover;
+}
+
+.flag-ribbon::after {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.40940126050420167) 0%,
+    rgba(0, 0, 0, 0) 150%
+  );
+  display: block;
+
+  content: "";
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-radius: 16px 0 0 16px;
+}
+
 .country .details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  top: 22vh;
+  width: 100%;
   padding: 20px;
-  color: #bbbbbb;
+  color: #ffffff;
 }
 
 .country .light.details {
-  color: #151515;
+  color: #000000;
 }
 
 .country .details h2 {
-  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
   font-size: 18px;
 }
 
 .country .details p {
   margin-bottom: 5px;
   font-size: 14px;
+  color: #dedede;
+}
+
+.country .light.details p {
+  color: #000000;
 }
 
 .country-page {
@@ -183,20 +288,26 @@ select {
 }
 
 .country-details {
-  color: #bbbbbb;
+  color: #ffffff;
 }
 
 .light.country-details {
   color: #151515;
 }
 
-button {
+.border-button {
   margin: 5px 10px;
   padding: 10px 20px;
-  color: #bbbbbb;
+  color: #ffffff;
+  font-weight: 600;
+  background-image: linear-gradient(
+    to right,
+    hsl(210, 78%, 56%),
+    hsl(146, 68%, 55%)
+  );
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
+  border-radius: 25px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }

@@ -23,7 +23,7 @@ function App() {
     <HashRouter>
       <div className="App">
         <nav className={isDarkMode ? "nav" : "light nav"}>
-          <Link to="/" onClick={() => window.location.reload(false)}>
+          <Link to="/">
             <h1>What in the World!?</h1>
           </Link>
           <label className="switch">
