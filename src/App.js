@@ -3,6 +3,7 @@ import { useState } from "react";
 import Home from "./Components/Home";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import CountryDetails from "./Components/CountryDetails";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -19,7 +20,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <nav className={isDarkMode ? "nav" : "light nav"}>
           <Link to="/">
@@ -41,7 +42,7 @@ function App() {
           </Switch>
         </div>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
