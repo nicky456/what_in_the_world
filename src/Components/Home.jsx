@@ -1,35 +1,34 @@
 import Countries from "./Countries";
 import Loading from "./Loading";
-import useFetch from "./useFetch";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home({ isDarkMode }) {
   const [url, setUrl] = useState("https://restcountries.com/v3.1/all");
-  const { data, isLoading, error } = useFetch(url);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
 
-  // const searchItems = (event) => {
-  //   console.log(event.target.value);
-  //   setSearchTerm(event.target.value);
-  //   console.log(searchTerm);
-  //   const filteredData = data.filter((item) => {
-  //     return item.name.common.toLowerCase().includes(searchTerm.toLowerCase());
-  //   });
-  //   setFilteredResults(filteredData);
-  // };
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("Error: " + error);
+      });
+  }, [url]);
 
   useEffect(() => {
-    console.log(searchTerm);
-  }, [searchTerm]);
-
-  const searchItems = () => {
-    const filteredData = data.filter((item) => {
-      return item.name.common.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    setFilteredResults(filteredData);
-  };
+    setFilteredResults(
+      data.filter((country) =>
+        country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, data]);
 
   const selectContinent = (e) => {
     if (e.target.value === "all") {
@@ -57,12 +56,10 @@ export default function Home({ isDarkMode }) {
     <>
       <div className="filter-search">
         <input
-          value={searchTerm}
           type={"text"}
           placeholder="Search for countries..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            searchItems();
           }}
         />
 
@@ -76,24 +73,15 @@ export default function Home({ isDarkMode }) {
         </select>
       </div>
       <div className="country-list">
-        {error && <div>{error}</div>}
-        {isLoading && <Loading />}
-        {searchTerm.length > 0
-          ? filteredResults.map((country) => {
-              return (
-                <div className="country" key={country.cca3}>
-                  <Countries country={country} isDarkMode={isDarkMode} />
-                </div>
-              );
-            })
-          : data &&
-            data.map((country) => {
-              return (
-                <div className="country" key={country.cca3}>
-                  <Countries country={country} isDarkMode={isDarkMode} />
-                </div>
-              );
-            })}
+        {loading ? (
+          <Loading />
+        ) : (
+          filteredResults.map((country) => (
+            <div className="country" key={country.cca3}>
+              <Countries country={country} isDarkMode={isDarkMode} />
+            </div>
+          ))
+        )}
       </div>
     </>
   );
