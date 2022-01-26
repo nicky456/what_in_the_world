@@ -36,9 +36,9 @@ function App() {
             <Route exact path="/">
               <Home isDarkMode={isDarkMode} />
             </Route>
-            {/* <Route exact path="/:cca3">
+            <Route exact path="/:cca3">
               <CountryDetails isDarkMode={isDarkMode} />
-            </Route> */}
+            </Route>
           </Switch>
         </div>
       </div>

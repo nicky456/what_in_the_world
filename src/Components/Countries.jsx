@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Countries({ country, isDarkMode }) {
   return (
-    // <Link to={`/${country.cca3}`} key={country.cca3}>
-    <>
+    <Link to={`/${country.cca3}`} key={country.cca3}>
       <img
         className={isDarkMode ? "flag" : "light flag"}
         src={country.flags.svg}
@@ -24,7 +23,6 @@ export default function Countries({ country, isDarkMode }) {
           {country.capital}
         </p>
       </div>
-    </>
-    // </Link>
+    </Link>
   );
 }
